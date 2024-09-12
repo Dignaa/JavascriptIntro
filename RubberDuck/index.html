@@ -10,30 +10,44 @@
   <body>
     <header class="site-header">
       <div class="site-identity">
+        <h3 id="greeting"></h3>
         <img id="duck" src="./Pictures/RubberDuck.jpg" />
+
         <h1>Rubber Ducky - Mr. Duck</h1>
+
+        <div class="buttonContainer">
+        <button id="forceAnswer">FORCE AN ANSWER!!!</button>
+
+        <a id="pageButton" href="user.html"><button>User Page</button></a>
       </div>
 
       <nav class="site-navigation">
         <ul class="nav"></ul>
       </nav>
     </header>
-    <div id="praiseContainer">
-      <select id="newPraise">
-        <option value="Great">This is great!</option>
-        <option value="Amazing">This is amazing!</option>
-        <option value="Fine">This is fine!</option>
-        <option value="Good">This is gooood!</option>
-      </select>
-
-      <button id="addPraise">Be happy about that!</button>
-      <ul id="praiseList"></ul>
+    <p id="joke"></p>
+    <div id="loadingDuck" class="hidden loading-duck">
+      <div class="duck"></div>
+      <h6>Searching for advice...</h6>
     </div>
-    <div id="problemContainer">
-      <input type="text" id="newProblem" />
-      <button id="addProblem">Complain about this!</button>
-      <img class="hidden" id="easterEgg" src="./Pictures/EasterEgg.jpg" />
-      <ul id="problemList"></ul>
+    <div class="container">
+      <div id="praiseContainer">
+        <select id="newPraise">
+          <option value="Great">This is great!</option>
+          <option value="Amazing">This is amazing!</option>
+          <option value="Fine">This is fine!</option>
+          <option value="Good">This is gooood!</option>
+        </select>
+
+        <button id="addPraise">Be happy about that!</button>
+        <ul id="praiseList"></ul>
+      </div>
+      <div id="problemContainer">
+        <input type="text" id="newProblem" />
+        <button id="addProblem">Complain about this!</button>
+        <img class="hidden" id="easterEgg" src="./Pictures/EasterEgg.jpg" />
+        <ul id="problemList"></ul>
+      </div>
     </div>
     <h2>Previous additions</h2>
     <ul id="pastList"></ul>

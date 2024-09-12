@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="validation.js" type="module"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <header class="site-header">
+    <div class="site-identity">
+      <img id="duck" src="./Pictures/RubberDuck.jpg" />
+      <h1>Rubber Ducky - Mr. Duck</h1>
+      <a id="pageButton" href="index.html"><button>Go back</button></a>
+    </div>
+
+    <nav class="site-navigation">
+      <ul class="nav"></ul>
+    </nav>
+  </header>
+  <body>
+    <div id="errorList"></div>
+    <form id="form">
+      <label for="name">Name:</label><br />
+      <input type="text" id="name" name="name" required /><br />
+      <label for="email">Email:</label><br />
+      <input type="text" id="email" name="email" required /><br /><br />
+      <label for="password">Password:</label><br />
+      <input type="password" id="password" required /><br /><br />
+      <input id="button" type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

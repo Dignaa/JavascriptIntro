@@ -1,8 +1,10 @@
 function addProblem() {
     const newProblem = document.getElementById("newProblem").value;
     if (newProblem === "") return; // Avoid adding empty items
+    if (!profanityFilter(newProblem)) return;
     const newLi = document.createElement("li");
     newLi.textContent = newProblem;
+    newLi.title = new Date();
 
     document.getElementById("problemList").appendChild(newLi);
     document.getElementById("newProblem").value = "";
@@ -25,6 +27,7 @@ function addPraise() {
 
     const newLi = document.createElement("li");
     newLi.textContent = newPraise;
+    newLi.title = new Date();
     document.getElementById("praiseList").appendChild(newLi);
 
     saveToLocalStorage(newPraise);
@@ -70,13 +73,52 @@ function saveToLocalStorage(problem) {
 
 function loadFromLocalStorage() {
     let problems = JSON.parse(localStorage.getItem("problems")) || [];
+    let names = JSON.parse(localStorage.getItem("names")) || [];
     problems.forEach(problem => {
         const newLi = document.createElement("li");
         newLi.textContent = problem;
         document.getElementById("pastList").appendChild(newLi);
     });
+    return names[names.length - 1]
 }
 
+//API fetch
+document.getElementById("forceAnswer").addEventListener("click", async () => {
+    let joke = document.getElementById("joke");
+    joke.classList.add('hidden');
+    const loadingDuck = document.getElementById('loadingDuck');
+    loadingDuck.classList.remove('hidden');
+
+    await new Promise(r => setTimeout(r, 2000));
+    const response = await fetch('https://v2.jokeapi.dev/joke/Any');
+    const jokeJson = await response.json();
+    loadingDuck.classList.add('hidden');
+    joke.classList.remove('hidden');
+    joke.textContent = jokeJson.joke ? jokeJson.joke : `${jokeJson.setup} ${jokeJson.delivery}`;
+
+});
+
+//Filter profanities
+const profanities = ["test", "bad", "awful", "scary"];
+
+function profanityFilter(problem) {
+    let result = true;
+    profanities.forEach(x => {
+        if (problem.toLowerCase().includes(x)) {
+            result = false;
+            alert("WHAT DID YOU JUST TRY TO SAY?!?!?")
+            return;
+        }
+    })
+    return result;
+};
+
+
 window.onload = function () {
-    loadFromLocalStorage();
+    let name = loadFromLocalStorage();
+    if (name === undefined) { name = prompt("TELL ME YOU NAME NOW!!") };
+    document.getElementById("greeting").textContent = `Welcome to Mr. Duck advisory service ${name}`;
+    document.getElementById("joke").classList.add('hidden');
 }
+
+//localStorage.clear();
