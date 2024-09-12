@@ -11,27 +11,32 @@
     <header class="site-header">
       <div class="site-identity">
         <h3 id="greeting"></h3>
-        <img id="duck" src="./Pictures/RubberDuck.jpg" />
+        <img id="duck" src="./Pictures/RubberDuck.jpg" alt="Rubber Duck" />
 
         <h1>Rubber Ducky - Mr. Duck</h1>
 
         <div class="buttonContainer">
-        <button id="forceAnswer">FORCE AN ANSWER!!!</button>
-
-        <a id="pageButton" href="user.html"><button>User Page</button></a>
+          <button id="forceAnswer">FORCE AN ANSWER!!!</button>
+          <a id="pageButton" href="user.html"><button>User Page</button></a>
+        </div>
       </div>
 
       <nav class="site-navigation">
         <ul class="nav"></ul>
       </nav>
     </header>
+
     <p id="joke"></p>
+
     <div id="loadingDuck" class="hidden loading-duck">
       <div class="duck"></div>
       <h6>Searching for advice...</h6>
     </div>
+
     <div class="container">
+      <!-- Praise Section -->
       <div id="praiseContainer">
+        <h2>Leave a Praise</h2>
         <select id="newPraise">
           <option value="Great">This is great!</option>
           <option value="Amazing">This is amazing!</option>
@@ -41,15 +46,37 @@
 
         <button id="addPraise">Be happy about that!</button>
         <ul id="praiseList"></ul>
+        <!-- List for current praises -->
       </div>
+
+      <!-- Problem Section -->
       <div id="problemContainer">
-        <input type="text" id="newProblem" />
+        <h2>Submit a Complaint</h2>
+        <input
+          type="text"
+          id="newProblem"
+          placeholder="What’s bothering you?"
+        />
         <button id="addProblem">Complain about this!</button>
-        <img class="hidden" id="easterEgg" src="./Pictures/EasterEgg.jpg" />
+        <img
+          class="hidden"
+          id="easterEgg"
+          src="./Pictures/EasterEgg.jpg"
+          alt="Easter Egg"
+        />
         <ul id="problemList"></ul>
+        <!-- List for current problems -->
       </div>
     </div>
-    <h2>Previous additions</h2>
+
+    <!-- Previous Additions Section -->
+    <h2>Previous Additions</h2>
+    <h3>Past Problems</h3>
     <ul id="pastList"></ul>
+    <!-- List for past problems -->
+
+    <h3>Past Praises</h3>
+    <ul id="pastPraiseList"></ul>
+    <!-- List for past praises -->
   </body>
 </html>

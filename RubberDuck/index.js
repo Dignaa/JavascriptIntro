@@ -9,7 +9,7 @@ function addProblem() {
     document.getElementById("problemList").appendChild(newLi);
     document.getElementById("newProblem").value = "";
 
-    saveToLocalStorage(newProblem);
+    saveProblemToLocalStorage(newProblem); // Updated function name
 }
 
 function addPraise() {
@@ -30,26 +30,21 @@ function addPraise() {
     newLi.title = new Date();
     document.getElementById("praiseList").appendChild(newLi);
 
-    saveToLocalStorage(newPraise);
+    savePraiseToLocalStorage(newPraise); // Updated function name
 
     document.getElementById("newPraise").value = "";
 }
 
-
-
+// Event listeners
 document.getElementById("addProblem").addEventListener("click", addProblem);
-
-document.getElementById("addPraise").addEventListener("click", function () {
-    addPraise();
-});
-
+document.getElementById("addPraise").addEventListener("click", addPraise);
 document.getElementById("newProblem").addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         addProblem();
     }
 });
 
-//Hover effect
+// Hover effect
 const button = document.getElementById("addProblem");
 const picture = document.getElementById("easterEgg");
 
@@ -63,26 +58,42 @@ button.addEventListener("mouseover", function () {
     picture.classList.add("visible");
 });
 
-
-//Local storage
-function saveToLocalStorage(problem) {
+// Local storage
+function saveProblemToLocalStorage(problem) {
     let problems = JSON.parse(localStorage.getItem("problems")) || [];
     problems.push(problem);
     localStorage.setItem("problems", JSON.stringify(problems));
 }
 
+function savePraiseToLocalStorage(praise) {
+    let praises = JSON.parse(localStorage.getItem("praises")) || [];
+    praises.push(praise);
+    localStorage.setItem("praises", JSON.stringify(praises));
+}
+
 function loadFromLocalStorage() {
+    // Load problems
     let problems = JSON.parse(localStorage.getItem("problems")) || [];
-    let names = JSON.parse(localStorage.getItem("names")) || [];
     problems.forEach(problem => {
         const newLi = document.createElement("li");
         newLi.textContent = problem;
-        document.getElementById("pastList").appendChild(newLi);
+        document.getElementById("pastList").appendChild(newLi); // Append to past problems list
     });
-    return names[names.length - 1]
+
+    // Load praises
+    let praises = JSON.parse(localStorage.getItem("praises")) || [];
+    praises.forEach(praise => {
+        const newLi = document.createElement("li");
+        newLi.textContent = praise;
+        document.getElementById("pastPraiseList").appendChild(newLi); // Append to past praises list
+    });
+
+    // Load names
+    let names = JSON.parse(localStorage.getItem("names")) || [];
+    return names[names.length - 1];
 }
 
-//API fetch
+// API fetch
 document.getElementById("forceAnswer").addEventListener("click", async () => {
     let joke = document.getElementById("joke");
     joke.classList.add('hidden');
@@ -98,7 +109,7 @@ document.getElementById("forceAnswer").addEventListener("click", async () => {
 
 });
 
-//Filter profanities
+// Filter profanities
 const profanities = ["test", "bad", "awful", "scary"];
 
 function profanityFilter(problem) {
@@ -111,14 +122,13 @@ function profanityFilter(problem) {
         }
     })
     return result;
-};
-
+}
 
 window.onload = function () {
+    document.getElementById("joke").classList.add('hidden');
     let name = loadFromLocalStorage();
     if (name === undefined) { name = prompt("TELL ME YOU NAME NOW!!") };
     document.getElementById("greeting").textContent = `Welcome to Mr. Duck advisory service ${name}`;
-    document.getElementById("joke").classList.add('hidden');
 }
 
 //localStorage.clear();
