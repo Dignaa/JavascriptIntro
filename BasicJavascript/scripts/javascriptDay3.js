@@ -55,13 +55,13 @@ while (guessed === false) {
 
 
     if (number > guess) {
-        console.log("THATS TOO LOW!!! TRY AGAIN!!!")
+        alert("THATS TOO LOW!!! TRY AGAIN!!!")
     }
     else if (number < guess) {
-        console.log("THATS TOO HIGH!!! TRY AGAIN!!!")
+        alert("THATS TOO HIGH!!! TRY AGAIN!!!")
     }
     else if (number == guess) {
-        console.log(`YOU ACTUALLY DID IT, TOOK ONLY ${attempts} attempts!!!!!`)
+        alert(`YOU ACTUALLY DID IT, TOOK ONLY ${attempts} attempts!!!!!`)
         guessed = true;
     }
 }
